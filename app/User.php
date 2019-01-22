@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table = 'users';
     use Notifiable;
 
     /**
@@ -31,5 +32,8 @@ class User extends Authenticatable
     public function admin() {
         return substr($this->type, 0, 5) == 'admin';
 
+    }
+    public function user() {
+        return substr($this->type, 0, 5) != 'admin';
     }
 }

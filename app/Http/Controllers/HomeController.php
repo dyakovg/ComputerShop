@@ -1,5 +1,5 @@
 <?php
-
+//{{Auth::user()->type}}
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function ComputerList()
     {
-        $computer = Computer::all();
+        $computer = Computer::orderBy('id')->paginate(5);
 
         $data = array (
             'computers' => $computer,
@@ -45,13 +45,28 @@ class HomeController extends Controller
 
     public function SaveComputer(Request $request)
     {
+        //validaciq?
+        $valid = $request->validate([
+            'name' => 'required|max:50',
+            'desc' => 'required|max:150',
+            'picture' => 'required|mimes:png,jpg,jpeg',
+
+        ]);
         $computer = new Computer;
 
         $computer->name=$request->name;
         $computer->description=$request->desc;
 
-        $computer->save();
 
+        
+
+        $file = $request->file('picture');
+        $file_name = time() . '.' . $file->getClientOriginalExtension();
+        $file_dir = public_path('photos');
+        $file->move($file_dir, $file_name);
+
+        $computer->photo = $file_name;
+        $computer->save();
         return redirect()->route('ComputerList');
     }
 

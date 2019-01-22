@@ -60,6 +60,11 @@
                                     <a class="dropdown-item" href="{{ route('ComputerList') }}">
                                         {{__ ('Computer List')}}
                                     </a>
+                                    @if(Auth::user()->admin())
+                                        <a class="dropdown-item" href="{{ route('UserList') }}">
+                                            {{__ ('User list')}}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

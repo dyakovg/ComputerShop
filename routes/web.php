@@ -24,3 +24,9 @@ Route::post('/savecomputer', 'HomeController@SaveComputer')->name('SaveComputer'
 Route::get('/editcomputer/{id}', 'HomeController@EditComputer')->name('EditComputer');
 Route::post('/updatecomputer/{id}', 'HomeController@UpdateComputer')->name('UpdateComputer');
 Route::get('/deletecomputer/{id}', 'HomeController@DeleteComputer')->name('DeleteComputer');
+
+Route::get('/user', 'UserController@UserList')->name('UserList');
+Route::get('/adduser', 'UserController@AddUser')->name('AddUser');
+Route::post('/saveuser', 'UserController@SaveUser')->name('SaveUser');
+Route::get('/edituser/{id}', 'UserController@EditUser')->name('EditUser');
+Route::post('/updateuser/{id}', 'UserController@UpdateUser')->name('UpdateUser');

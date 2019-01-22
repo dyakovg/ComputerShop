@@ -1,29 +1,40 @@
 @extends('layouts.404')
+
 @section('content')
 @if(Auth::user()->admin())
 <div class="container">
-      <h1>Edit computer</h1>
+      <h1>Edit user</h1>
       <div class="row">
         <div class="col-md-6">
-          <form action="{{route('UpdateComputer',$computer->id)}}" method="POST">
+          <form action="{{route('UpdateUser',$user->id)}}" method="POST">
             @csrf
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{$computer->name}}">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{$user->name}}">
             @if ($errors->first('name'))
             <div class="alert alert-danger">{{ $errors->first('name') }}</div>
             @endif
           </div>
           <div class="form-group">
-            <label for="picture">Photo</label>
-            <input type="file" name="picture">
+            <label for="type">Type:</label>
+            <input type="text" name="type" class="form-control" id="type" placeholder="Type" value="{{$user->type}}">
+            @if ($errors->first('type'))
+            <div class="alert alert-danger">{{ $errors->first('type') }}</div>
+            @endif
           </div>
           <div class="form-group">
-            <label for="desc">Description:</label>
-          <textarea class="form-control" name="desc" rows="3" id="desc" placeholder="Description">{{$computer->description}}</textarea>
-          @if ($errors->first('desc'))
-          <div class="alert alert-danger">{{ $errors->first('desc') }}</div>
-          @endif
+            <label for="email">Type:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{$user->email}}">
+            @if ($errors->first('email'))
+            <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="leave empty if no changes" value="">
+            @if ($errors->first('password'))
+            <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+            @endif
           </div>
           <div class="col-12 text-right">
             <button type="submit" name="process" class="btn btn-default">Add</button>

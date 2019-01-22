@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.404')
 
 @section('content')
     <div class="container">
@@ -16,6 +16,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>Date</th>
+          <th>Photo</th>
           @if(Auth::user()->admin())
             <th>Operations</th>
           @endif
@@ -27,6 +28,7 @@
             <td> {{ $value->name }} </td>
             <td> {{ $value->description }} </td>
             <td> {{ $value->created_at }} </td>
+            <td> {!! $value->photo(true) !!}
             @if(Auth::user()->admin())
               <td>
                 <a class="btn btn-default" href="{{route ('EditComputer',$value->id) }}" role="button">Edit<span class="glyphicon glyphicon-pencil"></span></a> / 
@@ -35,6 +37,7 @@
             @endif
           </tr>
            @endforeach
+           {{$computers->links()}}
       </table>
     </div>
 @endsection
