@@ -21,6 +21,10 @@ class UserController extends Controller
     }
 
     public function AddUser(){
+        if(Auth::user()->admin() == false)
+        {
+        return view('message')->with('message', 'You are not allowed to do that.');
+        }
         return view('Users/AddUser');
     }
 
@@ -30,7 +34,7 @@ class UserController extends Controller
 
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->type=$request->type;
+        $user->type='user'->type;
         $user->password=Hash::make($request->password);
 
         $user->save();
@@ -40,6 +44,10 @@ class UserController extends Controller
 
     public function EditUser($id)
     {
+        if(Auth::user()->admin() == false)
+        {
+        return view('message')->with('message', 'You are not allowed to do that.');
+        }
         $user = User::find($id);
 
         $data = array(

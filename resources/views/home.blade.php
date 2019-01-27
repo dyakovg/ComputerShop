@@ -53,7 +53,13 @@
                     <div class="card-body">
                         <table class="table table-bordered ">
                             <tr>
+                              @if(Auth::user()->admin())
+                                <th>ID</th>
+                              @endif
                               <th>Name</th>
+                              @if(Auth::user()->admin())
+                                <th>Type</th>
+                              @endif
                               <th>Created at</th>
                               @if(Auth::user()->admin())
                                 <th>Operations</th>
@@ -61,8 +67,14 @@
                             </tr>
                             <tr>
                               @foreach($users as $value)
-                              <tr> 
+                              <tr>
+                                @if(Auth::user()->admin())
+                                  <td> {{ $value->id }} </td> 
+                                @endif
                                 <td> {{ $value->name }} </td>
+                                @if(Auth::user()->admin())
+                                  <td> {{ $value->type }} </td>
+                                @endif
                                 <td> {{ $value->created_at }} </td>
                                 @if(Auth::user()->admin())
                                   <td>

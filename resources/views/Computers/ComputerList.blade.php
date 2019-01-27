@@ -7,12 +7,16 @@
           <h1>Computer parts</h1>
         </div>
         <div class="col-9 text-right">
-          <a href="{{route('AddComputer')}}"><button type="button" class="btn btn-primary">Add new computer</button></a>
+          @if(Auth::user()->admin())
+          <a href="{{route('AddComputer')}}"><button type="button" class="btn btn-primary">Add new computer part</button></a>
+          @endif
         </div>
       </div>
       <table class="table table-bordered ">
         <tr>
-          <th>ID</th>
+          @if(Auth::user()->admin())
+            <th>ID</th>
+          @endif
           <th>Name</th>
           <th>Description</th>
           <th>Date</th>
@@ -23,8 +27,10 @@
         </tr>
         <tr>
           @foreach($computers as $value)
-          <tr> 
-            <td> {{ $value->id }} </td>
+          <tr>
+            @if(Auth::user()->admin()) 
+              <td> {{ $value->id }} </td>
+            @endif
             <td> {{ $value->name }} </td>
             <td> {{ $value->description }} </td>
             <td> {{ $value->created_at }} </td>

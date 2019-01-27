@@ -27,9 +27,9 @@ Repository
 ```
 Terminal
 ```
-4. Extract 
+4. Extract DB
 ```
-DB 
+The database is "computersp.sql" file ( it is in the root folder ) . You should paste it directly in your phpmyadmin. 
 ```
 5. Run
 ```

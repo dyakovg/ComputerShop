@@ -2,7 +2,7 @@
 @section('content')
 @if(Auth::user()->admin())
 <div class="container">
-      <h1>Edit computer</h1>
+      <h1>Edit part</h1>
       <div class="row">
         <div class="col-md-6">
           <form action="{{route('UpdateComputer',$computer->id)}}" method="POST">
@@ -26,7 +26,7 @@
           @endif
           </div>
           <div class="col-12 text-right">
-            <button type="submit" name="process" class="btn btn-default">Add</button>
+            <button type="submit" name="process" class="btn btn-default">Update</button>
           </div>
         </form>
         </div>

@@ -28,14 +28,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $computer = Computer::orderBy('id')->take(3)->get();
+        $computer = Computer::orderBy('id', 'DSC')->take(3)->get();
 
         $datacomputer = array (
             'computers' => $computer,
         );
 
 
-        $user = User::orderBy('id')->take(3)->get();
+        $user = User::orderBy('id', 'DSC')->take(3)->get();
 
         $datauser = array (
             'users' => $user,
@@ -54,6 +54,10 @@ class HomeController extends Controller
     }
 
     public function AddComputer(){
+        if(Auth::user()->admin() == false)
+        {
+        return view('message')->with('message', 'You are not allowed to do that.');
+        }
         return view('Computers/AddComputer');
     }
 
@@ -103,7 +107,7 @@ class HomeController extends Controller
         );
 
         $rules = array(
-            'name'=> 'required|max:10',
+            'name'=> 'required|max:50',
             'desc'=>'required|max:150',
         );
 
@@ -142,7 +146,8 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $computers = Computer::where('name', 'like', "%$search%")->paginate(5);
+        $computers = Computer::where('name', 'like', "%$search%")->orWhere('description', 'like', "%$search%")->paginate(5);
+
         return view('Computers/ComputerList', ['computers' =>$computers]);
     }
 
