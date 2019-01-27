@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Last added parts <a href="{{route('ComputerList')}}"><button type="button" class="btn btn-outline-primary">See all parts</button></a></div>
+                <div class="card-header">Last added parts<a href="{{route('ComputerList')}}"><button type="button" class="btn btn-outline-primary">See all parts</button></a></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -55,17 +55,21 @@
                             <tr>
                               <th>Name</th>
                               <th>Created at</th>
-                              <th>Operations</th>
+                              @if(Auth::user()->admin())
+                                <th>Operations</th>
+                              @endif
                             </tr>
                             <tr>
                               @foreach($users as $value)
                               <tr> 
                                 <td> {{ $value->name }} </td>
                                 <td> {{ $value->created_at }} </td>
+                                @if(Auth::user()->admin())
                                   <td>
                                     <a class="btn btn-default" href="{{route ('EditUser',$value->id) }}" role="button">Edit<span class="glyphicon glyphicon-pencil"></span></a> / 
                                     <a class="btn btn-default" href="{{route ('DeleteComputer',$value->id) }}" role="button">Delete<span class="glyphicon glyphicon-remove"></span></a>
                                   </td>
+                                @endif
                               </tr>
                                @endforeach
                           </table>

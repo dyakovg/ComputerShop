@@ -32,7 +32,7 @@
             <td> {{ $value->updated_at }} </td>
               <td>
                 <a class="btn btn-default" href="{{route ('EditUser',$value->id) }}" role="button">Edit<span class="glyphicon glyphicon-pencil"></span></a> / 
-                <a class="btn btn-default" href="{{route ('DeleteComputer',$value->id) }}" role="button">Delete<span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default" href="{{route ('DeleteUser',$value->id) }}" role="button">Delete<span class="glyphicon glyphicon-remove"></span></a>
               </td>
           </tr>
            @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
@@ -68,4 +69,18 @@ class UserController extends Controller
 
         return redirect()->route('UserList');
     }
+
+    function DeleteUser($id)
+    {   
+        if(Auth::user()->admin() == false)
+        {
+        return view('message')->with('message', 'You are not allowed to do that.');
+        }
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect()->route('UserList');
+    }
+
 }

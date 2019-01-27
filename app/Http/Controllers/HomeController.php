@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Computer;
 use App\User;
+use Auth;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -126,7 +127,11 @@ class HomeController extends Controller
     }
 
     function DeleteComputer($id)
-    {
+    {   
+        if(Auth::user()->admin() == false)
+        {
+        return view('message')->with('message', 'You are not allowed to do that.');
+        }
         $computer = Computer::find($id);
 
         $computer->delete();
