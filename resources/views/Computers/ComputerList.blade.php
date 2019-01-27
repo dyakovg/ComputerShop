@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-3">
-          <h1>Computer List</h1>
+          <h1>Computer parts</h1>
         </div>
         <div class="col-9 text-right">
           <a href="{{route('AddComputer')}}"><button type="button" class="btn btn-primary">Add new computer</button></a>

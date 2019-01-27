@@ -27,7 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $computer = Computer::orderBy('id')->take(3)->get();
+
+        $datacomputer = array (
+            'computers' => $computer,
+        );
+
+
+        $user = User::orderBy('id')->take(3)->get();
+
+        $datauser = array (
+            'users' => $user,
+        );
+        return view('home', $datacomputer, $datauser);
     }
 
     public function ComputerList()
