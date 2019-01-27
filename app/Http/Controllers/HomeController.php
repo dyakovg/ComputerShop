@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Computer;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -89,8 +90,8 @@ class HomeController extends Controller
         );
 
         $rules = array(
-            'name'=> 'required|max:50',
-            'desc'=>'required|max:2',
+            'name'=> 'required|max:10',
+            'desc'=>'required|max:150',
         );
 
         $validator = Validator::make($request->all(), $rules,$messsages);
@@ -119,6 +120,13 @@ class HomeController extends Controller
         $computer->delete();
 
         return redirect()->route('ComputerList');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $computers = DB::table('computers')->where('name', 'like', '%'.$search.'%')->paginate(5);
+        return view('Computers/ComputerList', ['computers' =>$computers]);
     }
 
 }

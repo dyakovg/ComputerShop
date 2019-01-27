@@ -30,3 +30,5 @@ Route::get('/adduser', 'UserController@AddUser')->name('AddUser');
 Route::post('/saveuser', 'UserController@SaveUser')->name('SaveUser');
 Route::get('/edituser/{id}', 'UserController@EditUser')->name('EditUser');
 Route::post('/updateuser/{id}', 'UserController@UpdateUser')->name('UpdateUser');
+
+Route::get('/search', 'HomeController@search');
