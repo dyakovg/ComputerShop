@@ -28,7 +28,7 @@
             <td> {{ $value->name }} </td>
             <td> {{ $value->description }} </td>
             <td> {{ $value->created_at }} </td>
-            <td> {{ $value->photo(true) }} </td>
+            <td> {!! $value->photo(true) !!} </td>
             @if(Auth::user()->admin())
               <td>
                 <a class="btn btn-default" href="{{route ('EditComputer',$value->id) }}" role="button">Edit<span class="glyphicon glyphicon-pencil"></span></a> / 

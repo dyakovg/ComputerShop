@@ -125,7 +125,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $computers = DB::table('computers')->where('name', 'like', '%'.$search.'%')->paginate(5);
+        $computers = Computer::where('name', 'like', "%$search%")->paginate(5);
         return view('Computers/ComputerList', ['computers' =>$computers]);
     }
 
